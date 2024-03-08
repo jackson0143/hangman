@@ -19,11 +19,78 @@ def single_char_input(prompt=""):
     return user_input
 
 
+#ASCII art from chrishorton github page
+#https://gist.github.com/chrishorton/8510732aa9a80a03c829b09f12e20d9c
+
+def get_art(index):
+    HANGMANPICS = ['''
+  
+    
+      YOU ARE SAFE!
+                   
+      
+      
+=========''','''
+  +---+
+  |   |
+      |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+      |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+  |   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|   |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+      |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ /    |
+      |
+=========''', '''
+  +---+
+  |   |
+  O   |
+ /|\  |
+ / \  |
+      |
+=========''']
+    
+    HANGMANPICS.reverse()
+    return HANGMANPICS[index]
+
+
+
 
 
 def Round(dictionary):
 
-        secret_word = random.choice(dictionary)
+        secret_word = random.choice(dictionary).lower()
         turns = 7
         guess = ''
         guess_display = ""
@@ -42,8 +109,9 @@ def Round(dictionary):
     
 
             print(f"guess history:{guess_history}")   
-            guess = single_char_input("Guess a chracter: ")
+            guess = single_char_input("Guess a chracter: ").lower()
             print("\n")
+            
             if guess not in guess_history:
                 guess_history.append(guess)
                 if guess in secret_word:
@@ -55,18 +123,20 @@ def Round(dictionary):
                         if guess == secret_word[i]:
                             guess_display[i] = guess
                     guess_display = "".join(guess_display)
+                    print(get_art(turns))
 
 
 
 
                 else:
-                    turns -= 1
-                    print("WRONG!")
-                    print(f"you have {turns} turns left")
+                    turns -=1
+                    print(get_art(turns))
+                    print(f"Wrong! you have {turns} turns left")
             else:
-                print("You have already guessed this")
-                print(f"guess history:{guess_history}")
-
+                print(get_art(turns))
+                print("You have already guessed this, try again.")
+                
+    
 
             #check if you guessed all the characters
             if '_' not in guess_display:
