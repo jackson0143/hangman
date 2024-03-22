@@ -36,20 +36,27 @@ def main():
     print("WELCOME TO THE MINI-HANGMAN GAME")
     print("")
 
-    game_count = 0
-    print(f"Your total game sessions:{game_count}")
+    game_win = 0
+    game_loss = 0
+    while True:
+        print(f"Your total WINS:{game_win}")
+        print(f"Your total LOSS:{game_loss}")
+        
+        display_main_menu()
+        choice = int_input("Please choose an option: ", restricted_to=[1,2])
+        print("")
+        if choice == 1:
+            dictionary = csv_reader("fruits.csv")
+            test =Round(dictionary)
+            if test == 1:
+                game_win +=1
+            elif test == 0:
+                game_loss += 1
 
-    display_main_menu()
-    choice = int_input("Please choose an option: ", restricted_to=[1,2])
-    print("")
-    if choice == 1:
-        dictionary = csv_reader("fruits.csv")
-        Round(dictionary)
+        elif choice == 2:
 
-    elif choice == 2:
-
-        print("Thanks for playing :)")
-        exit()
+            print("Thanks for playing :)")
+            exit()
 
 if __name__ == "__main__":
     main()

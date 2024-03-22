@@ -30,56 +30,56 @@ def get_art(index):
                    
       
       
-=========''','''
+=============================''','''
   +---+
   |   |
       |
       |
       |
       |
-=========''', '''
-  +---+
-  |   |
-  O   |
-      |
-      |
-      |
-=========''', '''
+=============================''', '''
   +---+
   |   |
   O   |
+      |
+      |
+      |
+=============================''', '''
+  +---+
+  |   |
+  O   |
   |   |
       |
       |
-=========''', '''
+=============================''', '''
   +---+
   |   |
   O   |
  /|   |
       |
       |
-=========''', '''
+=============================''', '''
   +---+
   |   |
   O   |
  /|\  |
       |
       |
-=========''', '''
+=============================''', '''
   +---+
   |   |
   O   |
  /|\  |
  /    |
       |
-=========''', '''
+=============================''', '''
   +---+
   |   |
   O   |
  /|\  |
  / \  |
       |
-=========''']
+=============================''']
     
     HANGMANPICS.reverse()
     return HANGMANPICS[index]
@@ -109,6 +109,7 @@ def Round(dictionary):
     
 
             print(f"guess history:{guess_history}")   
+  
             guess = single_char_input("Guess a chracter: ").lower()
             print("\n")
             
@@ -130,9 +131,12 @@ def Round(dictionary):
 
                 else:
                     turns -=1
+                    print("\n \n")
                     print(get_art(turns))
+                    
                     print(f"Wrong! you have {turns} turns left")
             else:
+                print("\n \n")
                 print(get_art(turns))
                 print("You have already guessed this, try again.")
                 
@@ -148,7 +152,9 @@ def Round(dictionary):
 
         if turns <=0:
             print("You lose")
-            print(f"The word was {secret_word}")
+            print(f"The word was {secret_word} \n \n")
+            return 0
         else:
-            print("You win")
+            print("You WIN! \n \n")
+            return 1
    
